@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Посты";
+$arDirProperties = Array(
+
+);
+?>
