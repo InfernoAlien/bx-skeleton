@@ -41,16 +41,16 @@
                     <ul class="post-stats post-stats_post js-user_" data-post-type="publish_ugc_ru" id="infopanel_post_466505">
                         <li class="post-stats__item post-stats__item_voting-wjt">
                             <div class="voting-wjt voting-wjt_post js-post-vote">
-                                <button type="button" class="btn voting-wjt__button " data-id="<?= $post["ID"] ?>" data-value="<?= $post['PROPERTY_RATING_VALUE']; ?>">
+                                <button type="button" class="btn voting-wjt__button " data-id="{{$post["ID"]}}" data-value="{{$post['PROPERTY_RATING_VALUE']}}">
                                     <svg id="vote-arrow" viewBox="0 0 15 24" width="10" height="16">
                                         <path d="M6.802.129l-6.709 7.637c-.211.241-.037.615.289.615h3.629c.21 0 .38.167.38.372v14.875c0 .205.169.372.379.372h4.64c.21 0 .379-.167.379-.372v-14.876c0-.205.17-.372.38-.372h3.63c.325 0 .5-.373.289-.615l-6.709-7.637c-.153-.171-.427-.171-.578.001z"></path>
                                     </svg>
                                 </button>
-                                <span class="voting-wjt__counter <? if($post['PROPERTY_RATING_VALUE']>=0){echo "voting-wjt__counter_positive";} else {echo "voting-wjt__counter_negative";} ?> js-score">
-                                                <? if ($post['PROPERTY_RATING_VALUE'] > 0) {echo "+";}
-                                    echo $post['PROPERTY_RATING_VALUE']; ?>
-                                            </span>
-                                <button type="button" class="btn voting-wjt__button voting-wjt-minus" data-action="minus" data-id="<?= $post["ID"] ?>" data-value="<?= $post['PROPERTY_RATING_VALUE']; ?>">
+                                <span class="voting-wjt__counter @if ($post['PROPERTY_RATING_VALUE']>=0){{"voting-wjt__counter_positive"}} @else {{"voting-wjt__counter_negative"}} @endif js-score">
+                                    @if ($post['PROPERTY_RATING_VALUE'] > 0) {{"+"}} @endif
+                                        {{$post['PROPERTY_RATING_VALUE']}}
+                                </span>
+                                <button type="button" class="btn voting-wjt__button voting-wjt-minus" data-action="minus" data-id="{{$post["ID"]}}" data-value="{{$post['PROPERTY_RATING_VALUE']}}">
                                     <svg id="vote-arrow" viewBox="0 0 15 24" width="10" height="16">
                                         <path d="M6.802.129l-6.709 7.637c-.211.241-.037.615.289.615h3.629c.21 0 .38.167.38.372v14.875c0 .205.169.372.379.372h4.64c.21 0 .379-.167.379-.372v-14.876c0-.205.17-.372.38-.372h3.63c.325 0 .5-.373.289-.615l-6.709-7.637c-.153-.171-.427-.171-.578.001z"></path>
                                     </svg>

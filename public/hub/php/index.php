@@ -55,18 +55,29 @@ $APPLICATION->SetTitle("PHP - Скриптовый язык общего наз�
 		</ul>
 	</div>
 </div>
+
 <?$APPLICATION->IncludeComponent(
-	"habr:standard.elements.list",
-	"",
-	[
-		"CACHE_TIME" => "3600",
-		"CACHE_TYPE" => "A",
-		"COUNT" => "2",
-		"IBLOCK_CODE" => "posts",
-		"IBLOCK_TYPE" => "news",
+    "main:posts.list",
+    "habr",
+    [
         "FILTER" => $_REQUEST["FILTER"],
-		"SHOW_NAV" => "Y",
-		"SORT_DIRECTION1" => "DESC",
-		"SORT_FIELD1" => "ACTIVE_FROM"
-	]
-);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+        "IBLOCK_CODE" => "posts",
+        "CURPAGE" => $_REQUEST["CURPAGE"],
+        "POSTS_PER_PAGE" => 1,
+        "IBLOCK_TYPE" => "lists"
+    ]
+);?>
+
+<?$APPLICATION->IncludeComponent(
+    "main:posts.navigation",
+    "habr",
+    [
+        "FILTER" => $_REQUEST["FILTER"],
+        "CURPAGE" => $_REQUEST["CURPAGE"],
+        "HUB" => $_REQUEST["HUB"],
+        "IBLOCK_CODE" => "posts",
+        "POSTS_PER_PAGE" => 1,
+        "IBLOCK_TYPE" => "lists"
+    ]
+);?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

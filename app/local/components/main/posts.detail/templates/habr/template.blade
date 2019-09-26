@@ -1,0 +1,63 @@
+<article class="post post_full" id="post_468705" lang="ru">
+    <div class="post__wrapper">
+        <header class="post__meta">
+            <a href="/users/{{$arResult['USER']['LOGIN']}}/" class="post__user-info user-info" title="Автор публикации">
+                <span class="default-image_mini default-image_lilac">
+                    <?= CFile::ShowImage($arResult['USER']['PERSONAL_PHOTO'], 24, 24, 'border=0', '', false); ?>
+                </span>
+                <span class="user-info__nickname user-info__nickname_small">{{$arResult['USER']['LOGIN']}}</span>
+            </a>
+            <span class="post__time" data-time_published="2019-09-24T13:01Z"><?=formDate($arResult['POST']['ACTIVE_FROM'], "j F Y");?> в <?=formDate($arResult['POST']['ACTIVE_FROM'], "H:i");?></span>
+        </header>
+        <h1 class="post__title post__title_full">
+            <span class="post__title-text">{{$arResult['POST']['NAME']}}</span>
+        </h1>
+        <ul class="post__hubs post__hubs_full-post inline-list">
+            @foreach ($arResult['POST']['PROPERTY_HABS_VALUE'] as $hubId)
+                @foreach ($arResult['HUBS'] as $hub)
+                    @if ($hub['UF_XML_ID'] == $hubId)
+                        <li class="inline-list__item inline-list__item_hub">
+                            <a href="/hub/{{$hubId}}/" class="inline-list__item-link hub-link " rel="nofollow">{{$hub['UF_HUB_NAME']}}</a>
+                        </li>
+                    @endif
+                @endforeach
+            @endforeach
+        </ul>
+        <div class="post__body post__body_full">
+            <div class="post__text post__text-html js-mediator-article">
+                {{$arResult['POST']['DETAIL_TEXT']}}
+            </div>
+        </div>
+        <dl class="post__tags">
+            <dt class="post__tags-label">Теги:</dt>
+            <dd class="post__tags-list">
+                <ul class="inline-list inline-list_fav-tags js-post-tags">
+                    @foreach ($arResult['POST']['PROPERTY_TAGS_VALUE'] as $tag)
+                                <? $tagurl = urlencode("[$tag]"); ?>
+                                <li class="inline-list__item inline-list__item_tag"><a href="/search/?q={{$tagurl}}&target_type=posts" rel="tag" class="inline-list__item-link post__tag  ">{{$tag}}</a></li>
+                    @endforeach
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</article>
+<ul class="post-stats post-stats_post js-user_" style="margin-top: 20px;" data-post-type="publish_ugc_ru" id="infopanel_post_468705">
+    <li class="post-stats__item post-stats__item_voting-wjt">
+        <div class="voting-wjt voting-wjt_post js-post-vote" data-id="468705" data-type="2">
+            <button type="button" class="btn voting-wjt__button " data-id="{{$arResult['POST']["ID"]}}" data-value="{{$arResult['POST']['PROPERTY_RATING_VALUE']}}">
+                <svg id="vote-arrow" viewBox="0 0 15 24" width="10" height="16">
+                    <path d="M6.802.129l-6.709 7.637c-.211.241-.037.615.289.615h3.629c.21 0 .38.167.38.372v14.875c0 .205.169.372.379.372h4.64c.21 0 .379-.167.379-.372v-14.876c0-.205.17-.372.38-.372h3.63c.325 0 .5-.373.289-.615l-6.709-7.637c-.153-.171-.427-.171-.578.001z"></path>
+                </svg>
+            </button>
+            <span class="voting-wjt__counter @if ($arResult['POST']['PROPERTY_RATING_VALUE']>=0){{"voting-wjt__counter_positive"}} @else {{"voting-wjt__counter_negative"}} @endif js-score">
+                                    @if ($arResult['POST']['PROPERTY_RATING_VALUE'] > 0) {{"+"}} @endif
+                {{$arResult['POST']['PROPERTY_RATING_VALUE']}}
+                                </span>
+            <button type="button" class="btn voting-wjt__button voting-wjt-minus" data-action="minus" data-id="{{$arResult['POST']["ID"]}}" data-value="{{$arResult['POST']['PROPERTY_RATING_VALUE']}}">
+                <svg id="vote-arrow" viewBox="0 0 15 24" width="10" height="16">
+                    <path d="M6.802.129l-6.709 7.637c-.211.241-.037.615.289.615h3.629c.21 0 .38.167.38.372v14.875c0 .205.169.372.379.372h4.64c.21 0 .379-.167.379-.372v-14.876c0-.205.17-.372.38-.372h3.63c.325 0 .5-.373.289-.615l-6.709-7.637c-.153-.171-.427-.171-.578.001z"></path>
+                </svg>
+            </button>
+        </div>
+    </li>
+</ul>

@@ -5,7 +5,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\HL_hub;
 
-class StaticBlockComponent extends \App\Components\BaseComponent
+class PostsList extends \App\Components\BaseComponent
 {
     protected function getIblockId()
     {
@@ -26,7 +26,20 @@ class StaticBlockComponent extends \App\Components\BaseComponent
     }
 
     protected function getResult() {
-        $postList = Post::select('FIELDS', 'PROPS')->fetchUsing('GetNext')->sort(['ACTIVE_FROM' => 'DESC'])->getList();
+        $filterRating = filter_var($this->arParams['FILTER'], FILTER_SANITIZE_NUMBER_INT);
+        if ($this->arParams['FILTER'] != '') {
+            $filter = [
+                '>=PROPERTY_RATING' => $filterRating
+            ];
+        }
+        //var_dump($_REQUEST["PAGE"]);
+        if($this->arParams['CURPAGE'] == "") {
+            $this->arResult['CURPAGE'] = 1;
+        }
+        else {
+            $this->arResult['CURPAGE'] = $this->arParams['CURPAGE'];
+        }
+        $postList = Post::select('FIELDS', 'PROPS')->fetchUsing('GetNext')->sort(['ACTIVE_FROM' => 'DESC'])->filter($filter)->forPage($this->arResult['CURPAGE'], $this->arParams['POSTS_PER_PAGE'])->getList();
         $userList = User::select('FIELDS', 'PROPS')->getList();
         $hubsList = HL_hub::getList();
 
