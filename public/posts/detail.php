@@ -9,4 +9,5 @@ $APPLICATION->SetTitle("");
         "IBLOCK_CODE" => "posts",
         "IBLOCK_TYPE" => "lists"
 	]
-);?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?><br>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

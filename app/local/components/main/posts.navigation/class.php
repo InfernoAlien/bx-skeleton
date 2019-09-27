@@ -17,24 +17,19 @@ class PostsNav extends \App\Components\BaseComponent
         $postCount = count($postList);
         $pages = ceil($postCount / $this->arParams['POSTS_PER_PAGE']);
 
-
         if($this->arParams['CURPAGE'] <= 5) {
             $nStartPage = 1;
-        }
-        elseif(($this->arParams['CURPAGE'] + 4) >= $pages) {
+        } elseif(($this->arParams['CURPAGE'] + 4) >= $pages) {
             $nStartPage = $this->arParams['CURPAGE'] - (7 - ($pages - $this->arParams['CURPAGE']));
-        }
-        else {
+        } else {
             $nStartPage = $this->arParams['CURPAGE'] - 4;
         }
 
         if($this->arParams['CURPAGE'] <= 4) {
             $nEndPage = 8;
-        }
-        elseif(($this->arParams['CURPAGE'] + 4) >= $pages) {
+        } elseif(($this->arParams['CURPAGE'] + 4) >= $pages) {
             $nEndPage = $pages;
-        }
-        else {
+        } else {
             $nEndPage = $this->arParams['CURPAGE'] + 4;
         }
         if($pages < 8) {
@@ -45,10 +40,10 @@ class PostsNav extends \App\Components\BaseComponent
         $this->arResult['PAGE_COUNT'] = $pages;
         $this->arResult['NPAGE_START'] = $nStartPage;
         $this->arResult['NPAGE_END'] = $nEndPage;
+
         if($this->arParams['CURPAGE'] == "") {
             $this->arResult['CURPAGE'] = 1;
-        }
-        else {
+        } else {
             $this->arResult['CURPAGE'] = $this->arParams['CURPAGE'];
         }
     }

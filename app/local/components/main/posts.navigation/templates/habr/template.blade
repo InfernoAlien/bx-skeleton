@@ -22,26 +22,26 @@
 
     <ul class="toggle-menu toggle-menu_pagination" id="nav-pagess">
         @if($arResult['CURPAGE'] > 5 && $arResult['PAGE_COUNT'] > 8)
-        <li class="toggle-menu__item toggle-menu__item_pagination">
-            <a href="/hub/<?=$arParams['HUB']?>/<?=$arParams['FILTER']?>/1/" class="toggle-menu__item-link toggle-menu__item-link_pagination toggle-menu__item-link_bordered" title="Первая страница" rel="">
-                <span class="icon-svg icon-svg_arrow-first">
-                    <svg class="icon-svg" width="28" height="24" viewBox="0 0 28 24">
-                        <path d="M8.452 5.455l2.93 3.192c.89.969 1.335 1.361 2.225 1.909h-13.608v2.773h13.634c-.838.5-1.492 1.102-2.252 1.913l-2.93 3.192 2.276 1.964 7.588-8.452-7.588-8.452-2.276 1.961zM24.297 0h3.087v23.891h-3.087v-23.891z"></path>
-                    </svg>
-                </span>
-            </a>
-        </li>
+            <li class="toggle-menu__item toggle-menu__item_pagination">
+                <a href="/hub/<?=$arParams['HUB']?>/<?=$arParams['FILTER']?>/1/" class="toggle-menu__item-link toggle-menu__item-link_pagination toggle-menu__item-link_bordered" title="Первая страница" rel="">
+                    <span class="icon-svg icon-svg_arrow-first">
+                        <svg class="icon-svg" width="28" height="24" viewBox="0 0 28 24">
+                            <path d="M8.452 5.455l2.93 3.192c.89.969 1.335 1.361 2.225 1.909h-13.608v2.773h13.634c-.838.5-1.492 1.102-2.252 1.913l-2.93 3.192 2.276 1.964 7.588-8.452-7.588-8.452-2.276 1.961zM24.297 0h3.087v23.891h-3.087v-23.891z"></path>
+                        </svg>
+                    </span>
+                </a>
+            </li>
         @endif
         @for($i = $arResult['NPAGE_START']; $i <= $arResult['NPAGE_END']; $i++)
-                @if($i == $arResult['CURPAGE'])
-                    <li class="toggle-menu__item toggle-menu__item_pagination">
-                        <span class="toggle-menu__item-link toggle-menu__item-link_pagination  toggle-menu__item-link_active ">{{$i}}</span>
-                    </li>
-                    @else
-                    <li class="toggle-menu__item toggle-menu__item_pagination">
-                        <a href="/hub/<?=$arParams['HUB']?>/<?=$arParams['FILTER']?>/<?=$i?>/" class="toggle-menu__item-link toggle-menu__item-link_pagination">{{$i}}</a>
-                    </li>
-                @endif
+            @if($i == $arResult['CURPAGE'])
+                <li class="toggle-menu__item toggle-menu__item_pagination">
+                    <span class="toggle-menu__item-link toggle-menu__item-link_pagination  toggle-menu__item-link_active ">{{$i}}</span>
+                </li>
+            @else
+                <li class="toggle-menu__item toggle-menu__item_pagination">
+                    <a href="/hub/<?=$arParams['HUB']?>/<?=$arParams['FILTER']?>/<?=$i?>/" class="toggle-menu__item-link toggle-menu__item-link_pagination">{{$i}}</a>
+                </li>
+            @endif
         @endfor
         @if($arResult['CURPAGE'] < ($arResult['PAGE_COUNT'] - 4) && $arResult['PAGE_COUNT'] > 8)
             <li class="toggle-menu__item toggle-menu__item_pagination">

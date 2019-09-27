@@ -7,22 +7,20 @@ use App\Api\BaseController;
 
 class PostController extends BaseController
 {
-    public function changeRating() {
-        //dump($_REQUEST);
+    public function changeRating()
+    {
         $res = $_POST['value'];
         $id = $_POST['id'];
         $action = $_POST['action'];
 
         if($action == "minus") {
             $new = $res - 1;
-        }
-        else {
+        } else {
             $new = $res + 1;
         }
         if($new > 0) {
             $result['value'] = "+" . (string)$new;
-        }
-        else {
+        } else {
             $result['value'] = $new;
         }
         $post = new Post($id);
