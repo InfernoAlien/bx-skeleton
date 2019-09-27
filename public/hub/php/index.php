@@ -63,6 +63,7 @@ $APPLICATION->SetTitle("PHP - Скриптовый язык общего наз�
     [
         "FILTER" => $_REQUEST["FILTER"],
         "CURPAGE" => $_REQUEST["CURPAGE"],
+        "HUB" => $_REQUEST["HUB"],
         "POSTS_PER_PAGE" => 2,
     ]
 );?>

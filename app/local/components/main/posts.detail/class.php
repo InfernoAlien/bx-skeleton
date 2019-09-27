@@ -16,12 +16,7 @@ class PostsDetail extends \App\Components\BaseComponent
             ->with('user', 'hub')
             ->getById($this->arParams['ELEMENT_ID']);
 
-        $user = $post->user;
-        $hubsList = $post->hub;
-
         $this->arResult['POST'] = $post;
-        $this->arResult['USER'] = $user;
-        $this->arResult['HUBS'] = $hubsList;
     }
 
     public function executeComponent ()

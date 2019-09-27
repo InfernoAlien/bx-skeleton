@@ -4,9 +4,9 @@
             <li class="content-list__item content-list__item_post shortcuts_item focus" id="post_468531">
                 <article class="post post_preview" lang="ru">
                     <header class="post__meta">
-                        <a href="https://habr.com/ru/users/{{$arResult['USERS']['LOGIN']}}/" class="post__user-info user-info" title="Автор публикации">
-                            <span class="default-image_mini default-image_green"><?= CFile::ShowImage($arResult['USERS']['PERSONAL_PHOTO'], 24, 24, 'border=0', '', false); ?></span>
-                            <span class="user-info__nickname user-info__nickname_small">{{$arResult['USERS']['LOGIN']}}</span>
+                        <a href="{{$post->user->personalPage()}}" class="post__user-info user-info" title="Автор публикации">
+                            <span class="default-image_mini default-image_green"><?= CFile::ShowImage($post->user['PERSONAL_PHOTO'], 24, 24, 'border=0', '', false); ?></span>
+                            <span class="user-info__nickname user-info__nickname_small">{{$post->user['LOGIN']}}</span>
                         </a>
                         <span class="post__time"><?=$post->getFormatedDate();?></span>
                     </header>
@@ -14,9 +14,9 @@
                         <a href="{{$post['DETAIL_PAGE_URL']}}" class="post__title_link">{{$post['NAME']}}</a>
                     </h2>
                     <ul class="post__hubs inline-list">
-                        @foreach ($arResult['HUBS'] as $hub)
+                        @foreach ($post->hub as $hub)
                             <li class="inline-list__item inline-list__item_hub">
-                                <a href="/hub/{{$hub['UF_XML_ID']}}/" class="inline-list__item-link hub-link " rel="nofollow">{{$hub['UF_HUB_NAME']}}</a>
+                                <a href="{{$hub->pageUrl()}}" class="inline-list__item-link hub-link " rel="nofollow">{{$hub['UF_HUB_NAME']}}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -56,8 +56,7 @@
             [
                 "POST_COUNT" => $arResult['POST_COUNT'],
                 "CURPAGE" => $arResult['CURPAGE'],
-                "HUB" => $_REQUEST["HUB"],
-                "FILTER" => $arParams["FILTER"],
+                "BASE_URL" => "/hub/" . $arParams["HUB"] . "/" . $arParams["FILTER"],
                 "POSTS_PER_PAGE" => $arParams['POSTS_PER_PAGE'],
             ]
         );?>

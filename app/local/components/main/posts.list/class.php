@@ -21,20 +21,13 @@ class PostsList extends \App\Components\BaseComponent
         } else {
             $this->arResult['CURPAGE'] = $this->arParams['CURPAGE'];
         }
-        $postCount = count($builder->getList());
+        $postCount = $builder->count();
         $postList = $builder
             ->forPage($this->arResult['CURPAGE'], $this->arParams['POSTS_PER_PAGE'])
             ->with('user', 'hub')
             ->getList();
 
-        foreach($postList as $post) {
-            $userList = $post->user;
-            $hubsList = $post->hub;
-        }
-
         $this->arResult['POSTS'] = $postList;
-        $this->arResult['USERS'] = $userList;
-        $this->arResult['HUBS'] = $hubsList;
         $this->arResult['POST_COUNT'] = $postCount;
     }
 

@@ -29,12 +29,10 @@ class PostsNav extends \App\Components\BaseComponent
             $nEndPage = $pages;
             $nStartPage = 1;
         }
-        $baseUrl = $this->arParams['HUB']."/".$this->arParams['FILTER'];
 
         $this->arResult['PAGE_COUNT'] = $pages;
         $this->arResult['NPAGE_START'] = $nStartPage;
         $this->arResult['NPAGE_END'] = $nEndPage;
-        $this->arResult['BASE_URL'] = $baseUrl;
     }
 
     public function executeComponent ()

@@ -1,9 +1,9 @@
 <article class="post post_full" id="post_468705" lang="ru">
     <div class="post__wrapper">
         <header class="post__meta">
-            <a href="/users/{{$arResult['USER']['LOGIN']}}/" class="post__user-info user-info" title="Автор публикации">
-                <span class="default-image_mini default-image_lilac"><?= CFile::ShowImage($arResult['USER']['PERSONAL_PHOTO'], 24, 24, 'border=0', '', false); ?></span>
-                <span class="user-info__nickname user-info__nickname_small">{{$arResult['USER']['LOGIN']}}</span>
+            <a href="{{$arResult['POST']->user->personalPage()}}" class="post__user-info user-info" title="Автор публикации">
+                <span class="default-image_mini default-image_lilac"><?= CFile::ShowImage($arResult['POST']->user['PERSONAL_PHOTO'], 24, 24, 'border=0', '', false); ?></span>
+                <span class="user-info__nickname user-info__nickname_small">{{$arResult['POST']->user['LOGIN']}}</span>
             </a>
             <span class="post__time"><?=$arResult['POST']->getFormatedDate();?></span>
         </header>
@@ -11,9 +11,9 @@
             <span class="post__title-text">{{$arResult['POST']['NAME']}}</span>
         </h1>
         <ul class="post__hubs post__hubs_full-post inline-list">
-            @foreach ($arResult['HUBS'] as $hub)
+            @foreach ($arResult['POST']->hub as $hub)
                 <li class="inline-list__item inline-list__item_hub">
-                    <a href="/hub/{{$hub['UF_XML_ID']}}/" class="inline-list__item-link hub-link " rel="nofollow">{{$hub['UF_HUB_NAME']}}</a>
+                    <a href="{{$hub->pageUrl()}}" class="inline-list__item-link hub-link " rel="nofollow">{{$hub['UF_HUB_NAME']}}</a>
                 </li>
             @endforeach
         </ul>

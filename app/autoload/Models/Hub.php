@@ -9,4 +9,9 @@ class Hub extends D7Model
     {
         return highloadblock_class('habr_habs');
     }
+
+    public function pageUrl()
+    {
+        return "/hub/" . $this['UF_XML_ID'] . "/";
+    }
 }
