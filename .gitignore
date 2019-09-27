@@ -83,11 +83,11 @@ config/.env.php
 tests/_output/*
 app/local/modules/sprint.options
 app/local/modules/arrilot.systemcheck
-public/bitrix/*
-public/html/*
-public/html_docs/*
-public/local/*
-public/upload/*
+public/bitrix
+public/html
+public/html_docs
+public/local
+public/upload
 
 
 html/npm-gebug.log
