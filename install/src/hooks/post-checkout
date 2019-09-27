@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+EVENT=$(basename $0)
+DIR=$(dirname $0)/${EVENT}.d
+ESC_SEQ="\x1b["
+COL_RESET=$ESC_SEQ"39;49;00m"
+COL_GREEN=$ESC_SEQ"0;32m"
+
+for hook in ${DIR}/*.sh;
+do
+  bash ${hook}
+done

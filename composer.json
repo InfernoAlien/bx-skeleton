@@ -1,0 +1,51 @@
+{
+  "name": "greensight/bitrix-skeleton",
+  "description": "A project built on top of Bitrix Skeleton",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/autoload/",
+      "System\\": "system/",
+      "Sprint\\Options\\": "app/local/modules/sprint.options/classes/Sprint/Options/"
+    }
+  },
+  "require": {
+    "arrilot/bitrix-blade": "^0.7",
+    "arrilot/bitrix-cacher": "^3.0",
+    "arrilot/bitrix-collectors": "^0.2",
+    "arrilot/bitrix-hlblock-fields-fixer": "^0.1",
+    "arrilot/bitrix-iblock-helper": "^0.3",
+    "arrilot/bitrix-migrations": "^2.3",
+    "arrilot/bitrix-models": "^0.7.21",
+    "arrilot/bitrix-systemcheck": "^0.1",
+    "arrilot/bitrix-tinker": "^0.1",
+    "arrilot/dotenv-php": "^2.0",
+    "arrilot/google-recaptcha": "^0.1",
+    "arrilot/logs": "^0.1",
+    "arrilot/slim-api-controller": "^0.2.0",
+    "illuminate/container": "^5.6",
+    "illuminate/database": "^5.6",
+    "lavary/crunz": "^1.4",
+    "mobiledetect/mobiledetectlib": "^2.8",
+    "monolog/monolog": "^1.22",
+    "ms-natali/bitrix-debug": "^0.1.0",
+    "sensiolabs/security-checker": "^5",
+    "symfony/console": "~3 || ~4",
+    "symfony/var-dumper": "~3 || ~4"
+  },
+  "require-dev": {
+    "filp/whoops": "^2.1",
+    "nunomaduro/collision": "^2.0"
+  },
+  "extra": {
+    "installer-paths": {
+      "app/local/modules/{$name}/": [
+        "type:bitrix-d7-module",
+        "type:bitrix-module"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
