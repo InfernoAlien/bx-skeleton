@@ -11,9 +11,13 @@ class PostsDetail extends \App\Components\BaseComponent
 
     protected function getResult()
     {
-        $post = Post::select('FIELDS', 'PROPS')->fetchUsing('GetNext')->getById($this->arParams['ELEMENT_ID']);
-        $user = User::select('FIELDS', 'PROPS')->getById($post['CREATED_BY']);
-        $hubsList = Hub::getList();
+        $post = Post::query()
+            ->fetchUsing('GetNext')
+            ->with('user', 'hub')
+            ->getById($this->arParams['ELEMENT_ID']);
+
+        $user = $post->user;
+        $hubsList = $post->hub;
 
         $this->arResult['POST'] = $post;
         $this->arResult['USER'] = $user;

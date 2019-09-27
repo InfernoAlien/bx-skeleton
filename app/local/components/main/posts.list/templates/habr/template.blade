@@ -4,26 +4,20 @@
             <li class="content-list__item content-list__item_post shortcuts_item focus" id="post_468531">
                 <article class="post post_preview" lang="ru">
                     <header class="post__meta">
-                        @foreach ($arResult['USERS'] as $user)
-                            <a href="https://habr.com/ru/users/{{$user['LOGIN']}}/" class="post__user-info user-info" title="Автор публикации">
-                                <span class="default-image_mini default-image_green"><?= CFile::ShowImage($user['PERSONAL_PHOTO'], 24, 24, 'border=0', '', false); ?></span>
-                                <span class="user-info__nickname user-info__nickname_small">{{$user['LOGIN']}}</span>
-                            </a>
-                        @endforeach
-                        <span class="post__time"><?=formDate($post['ACTIVE_FROM'], "j F Y");?> в <?=formDate($post['ACTIVE_FROM'], "H:i");?></span>
+                        <a href="https://habr.com/ru/users/{{$arResult['USERS']['LOGIN']}}/" class="post__user-info user-info" title="Автор публикации">
+                            <span class="default-image_mini default-image_green"><?= CFile::ShowImage($arResult['USERS']['PERSONAL_PHOTO'], 24, 24, 'border=0', '', false); ?></span>
+                            <span class="user-info__nickname user-info__nickname_small">{{$arResult['USERS']['LOGIN']}}</span>
+                        </a>
+                        <span class="post__time"><?=$post->getFormatedDate();?></span>
                     </header>
                     <h2 class="post__title">
                         <a href="{{$post['DETAIL_PAGE_URL']}}" class="post__title_link">{{$post['NAME']}}</a>
                     </h2>
                     <ul class="post__hubs inline-list">
-                        @foreach ($post['PROPERTY_HABS_VALUE'] as $hubId)
-                            @foreach ($arResult['HUBS'] as $hub)
-                                @if ($hub['UF_XML_ID'] == $hubId)
-                                    <li class="inline-list__item inline-list__item_hub">
-                                        <a href="/hub/{{$hubId}}/" class="inline-list__item-link hub-link " rel="nofollow">{{$hub['UF_HUB_NAME']}}</a>
-                                    </li>
-                                @endif
-                            @endforeach
+                        @foreach ($arResult['HUBS'] as $hub)
+                            <li class="inline-list__item inline-list__item_hub">
+                                <a href="/hub/{{$hub['UF_XML_ID']}}/" class="inline-list__item-link hub-link " rel="nofollow">{{$hub['UF_HUB_NAME']}}</a>
+                            </li>
                         @endforeach
                     </ul>
                     <div class="post__body post__body_crop ">
@@ -41,7 +35,9 @@
                                             <path d="M6.802.129l-6.709 7.637c-.211.241-.037.615.289.615h3.629c.21 0 .38.167.38.372v14.875c0 .205.169.372.379.372h4.64c.21 0 .379-.167.379-.372v-14.876c0-.205.17-.372.38-.372h3.63c.325 0 .5-.373.289-.615l-6.709-7.637c-.153-.171-.427-.171-.578.001z"></path>
                                         </svg>
                                     </button>
-                                    <span class="voting-wjt__counter @if ($post['PROPERTY_RATING_VALUE']>=0){{"voting-wjt__counter_positive"}} @else {{"voting-wjt__counter_negative"}} @endif js-score">@if ($post['PROPERTY_RATING_VALUE'] > 0) {{"+"}} @endif{{$post['PROPERTY_RATING_VALUE']}}</span>
+                                    <span class="js-change-rating voting-wjt__counter @if ($post['PROPERTY_RATING_VALUE'] >= 0) voting-wjt__counter_positive @else {{"voting-wjt__counter_negative"}} @endif js-score">
+                                        @if ($post['PROPERTY_RATING_VALUE'] > 0){{"+"}}@endif{{$post['PROPERTY_RATING_VALUE']}}
+                                    </span>
                                     <button type="button" class="btn voting-wjt__button voting-wjt-minus" data-action="minus" data-id="{{$post["ID"]}}" data-value="{{$post['PROPERTY_RATING_VALUE']}}">
                                         <svg id="vote-arrow" viewBox="0 0 15 24" width="10" height="16">
                                             <path d="M6.802.129l-6.709 7.637c-.211.241-.037.615.289.615h3.629c.21 0 .38.167.38.372v14.875c0 .205.169.372.379.372h4.64c.21 0 .379-.167.379-.372v-14.876c0-.205.17-.372.38-.372h3.63c.325 0 .5-.373.289-.615l-6.709-7.637c-.153-.171-.427-.171-.578.001z"></path>
@@ -54,6 +50,17 @@
                 </article>
             </li>
         @endforeach
+        <?$APPLICATION->IncludeComponent(
+            "main:posts.navigation",
+            "habr",
+            [
+                "POST_COUNT" => $arResult['POST_COUNT'],
+                "CURPAGE" => $arResult['CURPAGE'],
+                "HUB" => $_REQUEST["HUB"],
+                "FILTER" => $arParams["FILTER"],
+                "POSTS_PER_PAGE" => $arParams['POSTS_PER_PAGE'],
+            ]
+        );?>
     </ul>
 </div>
 

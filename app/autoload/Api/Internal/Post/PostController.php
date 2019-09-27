@@ -13,12 +13,12 @@ class PostController extends BaseController
         $id = $_POST['id'];
         $action = $_POST['action'];
 
-        if($action == "minus") {
+        if ($action == "minus") {
             $new = $res - 1;
         } else {
             $new = $res + 1;
         }
-        if($new > 0) {
+        if ($new > 0) {
             $result['value'] = "+" . (string)$new;
         } else {
             $result['value'] = $new;

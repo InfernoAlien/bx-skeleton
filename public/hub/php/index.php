@@ -62,23 +62,9 @@ $APPLICATION->SetTitle("PHP - Скриптовый язык общего наз�
     "habr",
     [
         "FILTER" => $_REQUEST["FILTER"],
-        "IBLOCK_CODE" => "posts",
         "CURPAGE" => $_REQUEST["CURPAGE"],
-        "POSTS_PER_PAGE" => 1,
-        "IBLOCK_TYPE" => "lists"
+        "POSTS_PER_PAGE" => 2,
     ]
 );?>
 
-<?$APPLICATION->IncludeComponent(
-    "main:posts.navigation",
-    "habr",
-    [
-        "FILTER" => $_REQUEST["FILTER"],
-        "CURPAGE" => $_REQUEST["CURPAGE"],
-        "HUB" => $_REQUEST["HUB"],
-        "IBLOCK_CODE" => "posts",
-        "POSTS_PER_PAGE" => 1,
-        "IBLOCK_TYPE" => "lists"
-    ]
-);?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

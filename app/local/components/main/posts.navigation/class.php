@@ -7,14 +7,7 @@ class PostsNav extends \App\Components\BaseComponent
 {
     protected function getResult()
     {
-        $filterRating = filter_var($this->arParams['FILTER'], FILTER_SANITIZE_NUMBER_INT);
-        if ($this->arParams['FILTER'] != '') {
-            $filter = [
-                '>=PROPERTY_RATING' => $filterRating
-            ];
-        }
-        $postList = Post::select('FIELDS', 'PROPS')->fetchUsing('GetNext')->sort(['ACTIVE_FROM' => 'DESC'])->filter($filter)->getList();
-        $postCount = count($postList);
+        $postCount = $this->arParams['POST_COUNT'];
         $pages = ceil($postCount / $this->arParams['POSTS_PER_PAGE']);
 
         if($this->arParams['CURPAGE'] <= 5) {
@@ -36,16 +29,12 @@ class PostsNav extends \App\Components\BaseComponent
             $nEndPage = $pages;
             $nStartPage = 1;
         }
+        $baseUrl = $this->arParams['HUB']."/".$this->arParams['FILTER'];
 
         $this->arResult['PAGE_COUNT'] = $pages;
         $this->arResult['NPAGE_START'] = $nStartPage;
         $this->arResult['NPAGE_END'] = $nEndPage;
-
-        if($this->arParams['CURPAGE'] == "") {
-            $this->arResult['CURPAGE'] = 1;
-        } else {
-            $this->arResult['CURPAGE'] = $this->arParams['CURPAGE'];
-        }
+        $this->arResult['BASE_URL'] = $baseUrl;
     }
 
     public function executeComponent ()
